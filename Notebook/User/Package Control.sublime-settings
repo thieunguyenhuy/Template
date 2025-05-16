@@ -1,0 +1,15 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+		"Theme - Monokai Pro",
+	],
+	"installed_packages":
+	[
+		"Monokai++",
+		"MonokaiFree",
+		"Package Control",
+		"Terminus",
+		"Theme - Monokai Pro",
+	],
+}

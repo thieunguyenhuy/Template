@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+#ifdef hwe
+    freopen("D:/Code/Contests/input.inp", "r", stdin);
+    freopen("D:/Code/Contests/output.out", "w", stdout);
+#else
+    #define taskname ""
+    if (fopen(taskname".inp", "r")) {
+        freopen(taskname".inp", "r", stdin);
+        freopen(taskname".out", "w", stdout);
+    }
+#endif
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>file</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+struct FenwickTree {
+    using T = int;
+    vector<T> bit;
+
+    FenwickTree() {}
+
+    void resize(int n) {
+        bit.assign(n + 1, 0);
+    }
+
+    void update(int p, T val) {
+        for (; p < int(bit.size()); p += p & -p) bit[p] += val;
+    }
+
+    T get(int p) {
+        T ans = 0;
+        for (; p > 0; p -= p & -p) ans += bit[p];
+        return ans;
+    }
+} fen;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>@fenwicktree</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

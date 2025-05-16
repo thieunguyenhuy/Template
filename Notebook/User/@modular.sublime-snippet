@@ -1,0 +1,119 @@
+<snippet>
+	<content><![CDATA[
+template <const int MOD = int(1e9) + 7>
+struct Modular {
+    int value;
+
+    Modular(ll x = 0) {
+        if (-MOD <= x && x < 2 * MOD) {
+            value = x;
+            if (value >= MOD) value -= MOD;
+            if (value < 0) value += MOD;
+        }
+        else {
+            value = x % MOD;
+            if (value < 0) value += MOD;
+        }
+    }
+
+    friend istream& operator >> (istream &is, Modular &x) {
+        return is >> x.value;
+    }
+
+    friend ostream& operator << (ostream &os, Modular &x) {
+        return os << x.value;
+    }
+
+    void operator = (ll x) {
+        *this = Modular(x);
+    }
+
+    void operator += (Modular x) {
+        value += x.value;
+        if (value >= MOD) value -= MOD;
+    }
+    void operator += (ll x) {
+        *this += Modular(x);
+    }
+    Modular operator + (Modular x) {
+        Modular res = *this; res += x;
+        return res; 
+    }
+    Modular operator + (ll x) {
+        return *this + Modular(x);
+    };
+    friend Modular operator + (ll x, Modular y){
+        return y + x;
+    }
+
+    void operator -= (Modular x) {
+        value -= x.value;
+        if (value < 0) value += MOD;
+    }
+    void operator -= (ll x) {
+        *this -= Modular(x);
+    }
+    Modular operator - (Modular x) {
+        Modular res = *this; res -= x;
+        return res;
+    }
+    Modular operator - (ll x) {
+        return *this - Modular(x);
+    }
+    friend Modular operator - (ll x, Modular y) {
+        return y - x;
+    }
+
+    void operator *= (Modular x) {
+        value = 1ll * value * x.value % MOD;
+    }
+    void operator *= (ll x) {
+        *this *= Modular(x);
+    }
+    Modular operator * (Modular x) {
+        Modular res = *this; res *= x;
+        return res;
+    }
+    Modular operator * (ll x) {
+        return *this * Modular(x);
+    }
+    friend Modular operator * (ll x, Modular y) {
+        return y * x;
+    }
+
+    void operator /= (Modular x) {
+        *this *= x.inverse();
+    }
+    void operator /= (ll x) {
+        *this *= Modular(x).inverse();
+    }
+    Modular operator / (Modular x) {
+        Modular res = *this; res /= x;
+        return res;
+    }
+    Modular operator / (ll x) {
+        return *this / Modular(x);
+    }
+    friend Modular operator / (ll x, Modular y) {
+        return x * y.inverse();
+    }
+
+    Modular binpow(ll n) {
+        Modular res(1), mul = *this;
+        while (n > 0) {
+            if (n & 1) res *= mul;
+            mul *= mul, n >>= 1;
+        }
+        return res;
+    }
+
+    Modular inverse() {
+        return binpow(MOD - 2);
+    }
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>@modular</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

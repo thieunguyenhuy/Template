@@ -1,0 +1,67 @@
+// require template Modular
+template <const int MOD = int(1e9) + 7>
+struct Matrix {
+	using T = Modular<MOD>;
+    vector<vector<T>> val;
+    int n, m;
+
+    Matrix(int _n = 0, int _m = 0) {
+        resize(_n, _m);
+    }
+
+    Matrix(vector<vector<ll>> ve) {
+        init(ve);
+    }
+
+    Matrix identity(int n) {
+        Matrix ret(n, n);
+        for (int i = 0; i < n; ++i) ret.val[i][i] = 1;
+        return ret;
+    }
+
+    void resize(int _n, int _m) {
+        n = _n, m = _m;
+        val.assign(n, vector<T>(m));
+    }
+
+    void init(vector<vector<ll>> ve) {
+        n = ve.size(), m = ve[0].size();
+        val.assign(n, vector<T>(m));
+        for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+            val[i][j] = ve[i][j];
+        }
+    }
+
+    friend ostream& operator << (ostream &os, Matrix T) {
+    	for (auto &x : T.val) {
+    		for (auto &y : x) os << y << ' ';
+            os << '\n';
+    	}
+        return os << '\n';
+    }
+
+    vector<T>& operator [] (int i) { return val[i]; }
+    const T& operator[] (int i) const { return val[i]; }
+
+    Matrix operator * (const Matrix other) {
+        assert(m == other.n);
+        Matrix ret(n, other.m);
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < other.m; ++j) {
+                for (int k = 0; k < m; ++k) {
+                	ret.val[i][j] += val[i][k] * other.val[k][j];
+                }
+            }
+        }
+        return ret;
+    }
+
+    Matrix binpow(ll n) {
+        Matrix A = *this, ret = identity(A.n);
+        while (n > 0) {
+            if (n & 1) ret = ret * A;
+            A = A * A, n >>= 1;
+        }
+        return ret;
+    }
+};

@@ -1,0 +1,11 @@
+{
+	"font_size": 16,
+	"ignored_packages":
+	[
+		"Theme - Monokai Pro",
+		"Vintage",
+	],
+	"theme": "Default Dark.sublime-theme",
+	"color_scheme": "Mariana.sublime-color-scheme",
+	"index_files": true,
+}

@@ -1,0 +1,77 @@
+<snippet>
+	<content><![CDATA[
+#include <bits/stdc++.h>
+using namespace std;
+
+#define POPCOUNT(n) (__builtin_popcountll((n)))
+#define CLZ(n) (__builtin_clzll((n)))
+#define CTZ(n) (__builtin_ctzll((n)))
+#define LOG(n) (63 - __builtin_clzll((n)))
+#define BIT(n, i) (((n) >> (i)) & 1ll)
+#define MASK(i) (1ll << (i))
+#define FLIP(n, i) ((n) ^ (1ll << (i)))
+#define ON(n, i) ((n) | MASK(i))
+#define OFF(n, i) ((n) & ~MASK(i))
+
+#define Int __int128
+#define fi first
+#define se second
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef pair<int, int> pii;
+typedef pair<long long, long long> pll;
+typedef pair<long long, int> pli;
+typedef pair<int, long long> pil;
+typedef vector<pair<int, int>> vii;
+typedef vector<pair<long long, long long>> vll;
+typedef vector<pair<long long, int>> vli;
+typedef vector<pair<int, long long>> vil;
+
+template <class T1, class T2> bool maximize(T1 &x, T2 y) {
+    if (x < y) {
+        x = y;
+        return true;
+    }
+    return false;
+}
+template <class T1, class T2> bool minimize(T1 &x, T2 y) {
+    if (x > y) {
+        x = y;
+        return true;
+    }
+    return false;
+}
+
+template <class T> void remove_duplicate(vector<T> &ve) {
+    sort (ve.begin(), ve.end());
+    ve.resize(unique(ve.begin(), ve.end()) - ve.begin());
+}
+
+mt19937_64 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
+template <class T1, class T2> T1 random(T1 l, T2 r) {
+    return uniform_int_distribution<T1>(l, r)(rng);
+}
+template <class T> T random(T r) {
+    return rng() % r;
+}
+
+const int N = 1e6 + 5;
+const int MOD = 1e9 + 7;
+const int inf = 1e9;
+const long long INF = 1e18;
+
+signed main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+
+
+
+    return 0;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>start</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

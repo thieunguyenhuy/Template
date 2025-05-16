@@ -1,0 +1,44 @@
+<snippet>
+	<content><![CDATA[
+struct Point {
+    ll x, y;
+
+    Point(ll _x = 0, ll _y = 0) {
+        x = _x, y = _y;
+    }
+};
+
+vector<tuple<long long, int, int>> get_edges(vector<Point> points) {
+    vector<int> ids(points.size());
+    iota(ids.begin(), ids.end(), 0);
+    vector<tuple<long long, int, int>> edges;
+
+    for (int rotation = 0; rotation < 4; rotation++) {
+        sort(ids.begin(), ids.end(), [&](int i, int j) {
+            return points[i].x + points[i].y < points[j].x + points[j].y;
+        });
+
+        map<int, int, greater<int>> active;
+        for (auto i : ids) {
+            for (auto it = active.lower_bound(points[i].x); it != active.end(); active.erase(it++)) {
+                int j = it->se;
+                if (points[i].x - points[i].y > points[j].x - points[j].y) break;
+                edges.emplace_back((points[i].x - points[j].x) + (points[i].y - points[j].y), i, j);
+            }
+            active[points[i].x] = i;
+        }
+
+        for (auto &p : points) {
+            if (rotation & 1) p.x = -p.x;
+            else swap(p.x, p.y);
+        }
+    }
+
+    return edges;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>@manhattan_mst</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

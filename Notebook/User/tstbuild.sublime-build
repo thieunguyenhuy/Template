@@ -1,0 +1,9 @@
+{
+	"variants":
+	[
+		{
+			"name": "Run",
+			"shell_cmd": "g++ -Dhwe \"${file}\" -o \"${file_base_name}\" && start cmd /c \"\"${file_path}/${file_base_name}\" & echo. & pause\""
+		}
+	]
+}

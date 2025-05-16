@@ -1,0 +1,27 @@
+struct DSU {
+    vector<int> lab;
+
+    DSU() {}
+
+    void resize(int n) {
+        lab.assign(n + 1, -1);
+    }
+
+    int find_set(int p) {
+        return lab[p] < 0 ? p : lab[p] = find_set(lab[p]);
+    }
+
+    bool same_set(int u, int v) {
+        return find_set(u) == find_set(v);
+    }
+
+    bool join(int u, int v) {
+        u = find_set(u), v = find_set(v);
+        if (u != v) {
+            if (lab[u] > lab[v]) swap(u, v);
+            lab[u] += lab[v], lab[v] = u;
+            return true;
+        }
+        return false;
+    }
+} dsu;
